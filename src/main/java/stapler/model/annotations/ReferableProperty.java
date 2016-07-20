@@ -59,7 +59,6 @@ public @interface ReferableProperty {
 	
 	/**
 	 * <p>Specifies how many items the property should minimally reflect.</p> 
-	 * <p><b>Note:</b> this is only applicable for {@link Collection} fields.</p>
 	 * <p><b>Note:</b> special care should be taken for the initialization and lifecycle of the field that reflects the attribute. For instance, if the values for the field are set by means of an action that is constrained by the policy, or requires a lookup of this attribute in any way, then an error can occur. Because of this, we advise to only set this property when the values for this field are set prior to any access control checks and subsequent modification always satisfies this assertion.</p>
 	 * @author Jasper Bogaerts
 	 * @since Feb 22, 2016

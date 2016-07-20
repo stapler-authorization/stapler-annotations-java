@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 import java.lang.annotation.ElementType;
 
 /**
- * Specifies whether the target is an entity that can be addressed from the access control policy
+ * Specifies whether the target is an entity type that can be addressed from the access control policy
  * 
  * @author Jasper Bogaerts
  * @since Feb 21, 2016
@@ -43,11 +43,27 @@ import java.lang.annotation.ElementType;
 @Inherited
 public @interface DomainEntity {
 	/**
-	 * Specifies whether the given entity should be referable in the policy.
+	 * Specifies whether the given entity type should be referable in the policy.
 	 * @author Jasper Bogaerts
 	 * @since Feb 21, 2016
 	 *
-	 * @return True if referable, false if the entity cannot be addressed.
+	 * @return True if referable, false if the entity type cannot be addressed.
 	 */
 	boolean referable() default true;
+	
+	/**
+	 * <p>Specifies the alternative name under which the entity type will be referred.</p>
+	 * <p>There are several important notes to take into account for this:</p>
+	 * <ul>
+	 * 	<li>If the <code>referable</code> argument is set to <code>false</code>, this alternative name will not be taken into account as the entity type will not be included as part of the domain model anyway.</li>
+	 *  <li>If no name is specified, the entity type will be included in the domain model (barring any overriding exclusion rules) under the original simple name (<i>not</i> the FQN) of the annotated type.</li>
+	 *  <li>Several reserved words cannot be used as entity type names. We refer to online documentation for this.</li>
+	 *  <li>Beware not to include duplicate names for the domain model! This will lead to errors in parsing it.</li>
+	 * </ul> 
+	 * @author Jasper Bogaerts
+	 * @since Jul 14, 2016
+	 *
+	 * @return
+	 */
+	String name() default "";
 }
