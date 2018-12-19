@@ -17,15 +17,24 @@
  *    Technical Contact: jasper.bogaerts@cs.kuleuven.be
  *    Author: jasper.bogaerts@cs.kuleuven.be
  ******************************************************************************/
-
 package stapler.model.entities;
 
+
 /**
- * <p>Represents a subject entity type. Each concrete class that extends this type, or any of its concrete subclasses, will be considered <emph>actors</emph> of the application, unless explicitly annotated otherwise. These actor types will be addressable with their corresponding properties in the access control policy.</p> 
  * @author Jasper Bogaerts
- * @since Feb 22, 2016
+ * @since Aug 30, 2016
  *
  */
-public interface Subject {
-
+public enum EntityTypeCategory {
+	
+	Subject(Subject.class), Resource(Resource.class), Action(Action.class), Environment(Environment.class);
+	
+	private Class<? extends Object> interfaceType;
+	EntityTypeCategory(Class<? extends Object> interfaceType) {
+		this.interfaceType = interfaceType;
+	}
+	
+	public Class<? extends Object> getInterface() {
+		return this.interfaceType;
+	}
 }
